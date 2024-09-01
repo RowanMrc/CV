@@ -1,113 +1,179 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Github, Linkedin, Mail, Plane, Cloud, Navigation, Briefcase, GraduationCap } from "lucide-react"
+import Image from "next/image"
+import { useState, useEffect } from "react"
+
+export default function Component() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+      setIsVisible(true)
+    }, 800)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-sky-400 via-blue-400 to-indigo-600 flex items-center justify-center">
+        <div className="text-white text-4xl font-bold flex items-center">
+          <Plane className="animate-bounce mr-4 h-12 w-12" />
+          <span className="animate-pulse">Chargement...</span>
         </div>
       </div>
+    )
+  }
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-sky-200 via-blue-400 to-indigo-600 py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="max-w-5xl mx-auto">
+        <Card className="border-none shadow-2xl bg-white/90 backdrop-blur-md overflow-hidden">
+          <CardContent className="p-8">
+            <header className="flex flex-col md:flex-row items-center mb-12 transition-all duration-1000 ease-out transform translate-y-[-100%] opacity-0"
+                    style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)', opacity: isVisible ? 1 : 0 }}>
+              <div className="md:mr-8 mb-4 md:mb-0 relative">
+                <div className="w-48 h-48 rounded-full border-4 border-sky-500 overflow-hidden shadow-xl">
+                  <Image
+                    src="/profil_picture.jpg?height=200&width=200"
+                    alt="Profile Picture"
+                    width={200}
+                    height={200}
+                    className="object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 bg-sky-500 rounded-full p-2">
+                  <Plane className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <div className="text-center md:text-left">
+                <h1 className="text-5xl font-bold text-sky-900 mb-2">Mercier Rowan</h1>
+                <p className="text-2xl text-sky-700 mb-4">Alternant en Ingénierie logiciels chez Lisi Aerospace</p>
+                <div className="flex justify-center md:justify-start space-x-4">
+                  <Button variant="outline" size="icon" className="bg-sky-100 hover:bg-sky-200 transition-colors duration-300"
+                          onClick={() => window.open('https://github.com/RowanMrc', '_blank')}>
+                    <Github className="h-5 w-5" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="bg-sky-100 hover:bg-sky-200 transition-colors duration-300"
+                          onClick={() => window.open('https://www.linkedin.com/in/rowan-mercier', '_blank')}>
+                    <Linkedin className="h-5 w-5" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="bg-sky-100 hover:bg-sky-200 transition-colors duration-300"
+                          onClick={() => window.location.href = 'mailto:rowan973pro@gmail.com'}>
+                    <Mail className="h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
+            </header>
+
+            <section className="mb-12 transition-all duration-1000 ease-out delay-300 transform translate-x-[-100%] opacity-0"
+                     style={{ transform: isVisible ? 'translateX(0)' : 'translateX(-100%)', opacity: isVisible ? 1 : 0 }}>
+              <h2 className="text-3xl font-semibold text-sky-900 mb-4 flex items-center">
+                <Cloud className="mr-2" /> À propos de moi
+              </h2>
+              <p className="text-sky-800 text-lg leading-relaxed">
+              Étudiant en informatique actuellement en alternance au sein de Lisi Aerospace | Master Développement Sup de Vinci.
+              Passionné par l’aviation depuis toujours, mon but est d’évoluer au sein d’une entreprise dont le secteur d’activité est en lien avec ma passion..
+              </p>
+            </section>
+
+            <section className="mb-12 transition-all duration-1000 ease-out delay-600 transform translate-x-[100%] opacity-0"
+                     style={{ transform: isVisible ? 'translateX(0)' : 'translateX(100%)', opacity: isVisible ? 1 : 0 }}>
+              <h2 className="text-3xl font-semibold text-sky-900 mb-4 flex items-center">
+                <Cloud className="mr-2" /> Skills
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {["JavaScript", "React", "Node.js", "Python", "VueJs", "C#", "Tableau", "NodeRed", "SQL", "CI/CD", "GIT", "C", "Travail d'équipe", "Communication", "Gestion du stress", "Gestion de projet"].map((skill, index) => (
+                  <Badge key={index} className="bg-sky-200 text-sky-800 px-3 py-1 text-sm font-medium rounded-full transition-all hover:bg-sky-300 hover:scale-105">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </section>
+
+            <section className="mb-12 transition-all duration-1000 ease-out delay-900 transform translate-y-[100%] opacity-0"
+                     style={{ transform: isVisible ? 'translateY(0)' : 'translateY(100%)', opacity: isVisible ? 1 : 0 }}>
+              <h2 className="text-3xl font-semibold text-sky-900 mb-6 flex items-center">
+                <Briefcase className="mr-2" /> Experience
+              </h2>
+              <div className="space-y-8">
+                <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-semibold text-sky-900 mb-2">Développeur logiciels</h3>
+                    <p className="text-sky-700 mb-3">Lisi Aerospace | 2022 - Maintenant</p>
+                    <ul className="list-disc list-inside text-sky-800 space-y-2">
+                      <li>Développement de logiciels correspondants aux différents besoins métiers</li>
+                      <li>Mise en place de différents workflow</li>
+                      <li>Prise en considération de l'environnement cybersécurité</li>
+                      <li>Reporting DATA/BI</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-semibold text-sky-900 mb-2">Stage-développement d'applications d'aide au dimensionnement électrique de satellites</h3>
+                    <p className="text-sky-700 mb-3">Airbus Defence&Space | Arv.2022 - Juil.2022</p>
+                    <ul className="list-disc list-inside text-sky-800 space-y-2">
+                      <li>Prendre connaissance des besoins des ingénieurs travaillant sur l’architecture des satellites </li>
+                      <li>Définir une architecture d’application et proposer un planning de développement </li>
+                      <li>Développer un prototype fonctionnel de l’application en utilisant la méthode agile avec un retour utilisateur </li>
+                      <li>Ecrire la documentation  </li>
+                      <li>Faire des propositions d’améliorations et d’évolution de l’outil en accord avec l’activité de l’équipe  </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-semibold text-sky-900 mb-2">Aide/Cours particulier en informartique et technologies </h3>
+                    <p className="text-sky-700 mb-3">Indépendant | 2019 - 2021</p>
+                    <ul className="list-disc list-inside text-sky-800 space-y-2">
+                      <li>Assurer des cours particuliers à un large panel de clients </li>
+                      <li>Apporter une solution aux problèmes techniques des particuliers </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <h3 className="text-2xl font-semibold text-sky-900 mb-2">Saisonnier-Hôte de vente</h3>
+                    <p className="text-sky-700 mb-3">TotalEnergies | Jui.2019 - Aout.2019</p>
+                    <ul className="list-disc list-inside text-sky-800 space-y-2">
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </section>
+
+            <section className="transition-all duration-1000 ease-out delay-1200 transform translate-y-[100%] opacity-0"
+                     style={{ transform: isVisible ? 'translateY(0)' : 'translateY(100%)', opacity: isVisible ? 1 : 0 }}>
+              <h2 className="text-3xl font-semibold text-sky-900 mb-4 flex items-center">
+                <GraduationCap className="mr-2" /> Education
+              </h2>
+              <div className="space-y-8">
+              <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-semibold text-sky-900 mb-2">Master en informatique, Ingénierie informartique</h3>
+                  <p className="text-sky-700">Sup De Vinci | Diplomé 2024</p>
+                  <p className="text-sky-800 mt-2">Développement full-stack tout en alliant des technologies innovantes comme le Cloud, l’IA, la VR et la Blockchain </p>
+                </CardContent>
+              </Card>
+              <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-semibold text-sky-900 mb-2">Licence informatique</h3>
+                  <p className="text-sky-700">La Rochelle Université | Diplomé 2022</p>
+                  <p className="text-sky-800 mt-2"></p>
+                </CardContent>
+              </Card>
+              </div>
+            </section>
+          </CardContent>
+        </Card>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    </div>
+  )
 }
