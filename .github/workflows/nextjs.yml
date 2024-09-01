@@ -60,18 +60,17 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Create temporary ESLint config
+      - name: Create temporary next.config.js
         run: |
-          echo '{
-            "extends": "next/core-web-vitals",
-            "rules": {
-              "react/no-unescaped-entities": "off"
-            }
-          }' > .eslintrc.json
+          echo "module.exports = {
+            output: 'export',
+            images: {
+              unoptimized: true,
+            },
+            basePath: '/${{ github.event.repository.name }}',
+          }" > next.config.js
       - name: Build with Next.js
-        run: |
-          ${{ steps.detect-package-manager.outputs.runner }} next build
-          ${{ steps.detect-package-manager.outputs.runner }} next export
+        run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
       - name: Upload artifact
