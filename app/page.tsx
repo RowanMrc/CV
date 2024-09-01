@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Github, Linkedin, Mail, Plane, Cloud, Navigation, Briefcase, GraduationCap } from "lucide-react"
+import { Github, Linkedin, Mail, Plane, Cloud, Navigation, Briefcase, GraduationCap, Globe } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
@@ -41,7 +41,7 @@ export default function Component() {
               <div className="md:mr-8 mb-4 md:mb-0 relative">
                 <div className="w-48 h-48 rounded-full border-4 border-sky-500 overflow-hidden shadow-xl">
                 <Image
-  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/profil_picture.jpg?height=200&width=200`}
+  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}./profil_picture.jpg?height=200&width=200`}
   alt="Profile Picture"
   width={200}
   height={200}
@@ -81,7 +81,7 @@ export default function Component() {
               </h2>
               <p className="text-sky-800 text-lg leading-relaxed">
               Étudiant en informatique actuellement en alternance au sein de Lisi Aerospace | Master Développement Sup de Vinci.
-              Passionné par l’aviation depuis toujours, mon but est d’évoluer au sein d’une entreprise dont le secteur d’activité est en lien avec ma passion..
+              Passionné par l'aviation depuis toujours, mon but est d'évoluer au sein d'une entreprise dont le secteur d'activité est en lien avec ma passion..
               </p>
             </section>
 
@@ -96,6 +96,27 @@ export default function Component() {
                     {skill}
                   </Badge>
                 ))}
+              </div>
+            </section>
+
+            <section className="mb-12 transition-all duration-1000 ease-out delay-1500 transform translate-x-[-100%] opacity-0"
+                     style={{ transform: isVisible ? 'translateX(0)' : 'translateX(-100%)', opacity: isVisible ? 1 : 0 }}>
+              <h2 className="text-3xl font-semibold text-sky-900 mb-4 flex items-center">
+                <Globe className="mr-2" /> Langues parlées
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-medium text-sky-800">Français</span>
+                  <Badge className="bg-sky-200 text-sky-800 px-3 py-1 text-sm font-medium rounded-full transition-all hover:bg-sky-300 hover:scale-105">Langue maternelle</Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-medium text-sky-800">Anglais</span>
+                  <Badge className="bg-sky-200 text-sky-800 px-3 py-1 text-sm font-medium rounded-full transition-all hover:bg-sky-300 hover:scale-105">Courant - TOEIC 935</Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-medium text-sky-800">Espagnol</span>
+                  <Badge className="bg-sky-200 text-sky-800 px-3 py-1 text-sm font-medium rounded-full transition-all hover:bg-sky-300 hover:scale-105">Notions</Badge>
+                </div>
               </div>
             </section>
 
@@ -122,11 +143,11 @@ export default function Component() {
                     <h3 className="text-2xl font-semibold text-sky-900 mb-2">Stage-développement d'applications d'aide au dimensionnement électrique de satellites</h3>
                     <p className="text-sky-700 mb-3">Airbus Defence&Space | Arv.2022 - Juil.2022</p>
                     <ul className="list-disc list-inside text-sky-800 space-y-2">
-                      <li>Prendre connaissance des besoins des ingénieurs travaillant sur l’architecture des satellites </li>
-                      <li>Définir une architecture d’application et proposer un planning de développement </li>
-                      <li>Développer un prototype fonctionnel de l’application en utilisant la méthode agile avec un retour utilisateur </li>
+                      <li>Prendre connaissance des besoins des ingénieurs travaillant sur l'architecture des satellites </li>
+                      <li>Définir une architecture d'application et proposer un planning de développement </li>
+                      <li>Développer un prototype fonctionnel de l'application en utilisant la méthode agile avec un retour utilisateur </li>
                       <li>Ecrire la documentation  </li>
-                      <li>Faire des propositions d’améliorations et d’évolution de l’outil en accord avec l’activité de l’équipe  </li>
+                      <li>Faire des propositions d'améliorations et d'évolution de l'outil en accord avec l'activité de l'équipe  </li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -161,7 +182,7 @@ export default function Component() {
                 <CardContent className="p-6">
                   <h3 className="text-2xl font-semibold text-sky-900 mb-2">Master en informatique, Ingénierie informartique</h3>
                   <p className="text-sky-700">Sup De Vinci | Diplomé 2024</p>
-                  <p className="text-sky-800 mt-2">Développement full-stack tout en alliant des technologies innovantes comme le Cloud, l’IA, la VR et la Blockchain </p>
+                  <p className="text-sky-800 mt-2">Développement full-stack tout en alliant des technologies innovantes comme le Cloud, l'IA, la VR et la Blockchain </p>
                 </CardContent>
               </Card>
               <Card className="bg-sky-50 shadow-md hover:shadow-lg transition-shadow duration-300">
