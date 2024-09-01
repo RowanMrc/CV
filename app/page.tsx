@@ -40,13 +40,15 @@ export default function Component() {
                     style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)', opacity: isVisible ? 1 : 0 }}>
               <div className="md:mr-8 mb-4 md:mb-0 relative">
                 <div className="w-48 h-48 rounded-full border-4 border-sky-500 overflow-hidden shadow-xl">
-                  <Image
-                    src="./profil_picture.jpg?height=200&width=200"
-                    alt="Profile Picture"
-                    width={200}
-                    height={200}
-                    className="object-cover"
-                  />
+                <Image
+  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/profil_picture.jpg?height=200&width=200`}
+  alt="Profile Picture"
+  width={200}
+  height={200}
+  className="object-cover"
+/>
+
+
                 </div>
                 <div className="absolute -bottom-2 -right-2 bg-sky-500 rounded-full p-2">
                   <Plane className="h-6 w-6 text-white" />
