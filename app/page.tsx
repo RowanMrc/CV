@@ -41,7 +41,7 @@ export default function Component() {
               <div className="md:mr-8 mb-4 md:mb-0 relative">
                 <div className="w-48 h-48 rounded-full border-4 border-sky-500 overflow-hidden shadow-xl">
                   <Image
-                    src="/profil_picture.jpg?height=200&width=200"
+                    src="./profil_picture.jpg?height=200&width=200"
                     alt="Profile Picture"
                     width={200}
                     height={200}
